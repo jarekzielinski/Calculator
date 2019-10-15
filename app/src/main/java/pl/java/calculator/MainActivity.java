@@ -8,21 +8,40 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String DISPLAY_KEY = "display";
+    public static final String ACUMULATOR_KEY = "acumulator";
+    public static final String OPERATION_KEY = "operation";
     private String display="0";
     private double acumulator=0.0;
     private Operation currentOperation=Operation.NONE;
+    private TextView textview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textview = (TextView) findViewById(R.id.textView);
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(DISPLAY_KEY,display);
+        outState.putDouble(ACUMULATOR_KEY,acumulator);
+        outState.putString(OPERATION_KEY,currentOperation.name());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        display=savedInstanceState.getString(DISPLAY_KEY,"0");
+        acumulator=savedInstanceState.getDouble(ACUMULATOR_KEY);
+        currentOperation=Operation.valueOf(savedInstanceState.getString(OPERATION_KEY));
+        updateDisplay();
     }
 
     public void keyClicked(View view) {
         Button button=(Button) view;
         String key=button.getText().toString();
-        TextView textview=(TextView) findViewById(R.id.textView);
-
 
         switch (key){
             case "0":
@@ -57,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 clearAll();
 
         }
+        updateDisplay();
+    }
+
+    private void updateDisplay() {
         textview.setText(display);
     }
 
@@ -99,4 +122,6 @@ public class MainActivity extends AppCompatActivity {
         acumulator=Double.parseDouble(display);
         display="0";
     }
+
+
 }
