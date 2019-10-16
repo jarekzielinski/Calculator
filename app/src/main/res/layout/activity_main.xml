@@ -45,7 +45,7 @@
 
             <Button
                 android:id="@+id/button4"
-                style="@style/KeyStyle"
+                style="@style/KeyStyle.Operation"
                 android:text="CE" />
 
         </TableRow>
@@ -71,7 +71,7 @@
 
             <Button
                 android:id="@+id/button8"
-                style="@style/KeyStyle"
+                style="@style/KeyStyle.Operation"
                 android:text="C" />
 
         </TableRow>
@@ -97,7 +97,7 @@
 
             <Button
                 android:id="@+id/button12"
-                style="@style/KeyStyle"
+                style="@style/KeyStyle.Operation"
                 android:text="+" />
         </TableRow>
 
@@ -122,7 +122,7 @@
 
             <Button
                 android:id="@+id/button16"
-                style="@style/KeyStyle"
+                style="@style/KeyStyle.Operation"
                 android:text="-" />
         </TableRow>
 
