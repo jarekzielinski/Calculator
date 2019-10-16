@@ -64,8 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "+":
             case "-":
+            case "*":
+            case "/":
                 calculateOperation(key);
                 break;
+            case "SQRT(x)":
+                calculateSquareRoot();
+                break;
+            case "x^2":
+                calculateSquare();
             case "=":
                 calculateRsult();
                 break;
@@ -77,6 +84,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
         updateDisplay();
+    }
+
+    private void calculateSquare() {
+        double displayValue=Double.parseDouble(display);
+        displayResult(displayValue*displayValue);
+    }
+
+    private void calculateSquareRoot() {
+        double displayValue=Double.parseDouble(display);
+        displayResult(Math.sqrt(displayValue));
     }
 
     private void updateDisplay() {
@@ -104,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case SUBSTRACT:
                 displayResult(acumulator-displayValue);
+                break;
+            case MULTIPLY:
+                displayResult(acumulator*displayValue);
+                break;
+            case DIVIDE:
+                displayResult(acumulator/displayValue);
                 break;
         }
         acumulator=0.0;
